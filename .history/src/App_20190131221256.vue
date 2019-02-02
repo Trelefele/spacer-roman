@@ -1,11 +1,12 @@
 <template>
   <div class="app">
-    <div class="nav">
+    <div class="app">
       <router-link to="/home">spacer</router-link>
       <router-link to="/about">about</router-link>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style lang="scss" scoped />>
+<style lang="scss" scoped>
+
+</style>
