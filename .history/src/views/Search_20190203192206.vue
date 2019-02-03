@@ -43,14 +43,13 @@ export default {
 
 <style lang="scss" scoped>
     .searchWrapper {
-        margin: 0;
-        width: 100%;
-        height: 100vh;
-        padding: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        margin: 0;
+        padding: 30px;
+        width: 100%;
+        height: 100vh;
         background-image: url('../assets/heroimage.jpg');
         background-repeat: no-repeat;
         background-size: cover;

@@ -10,15 +10,6 @@
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  width:100vw;
-  height: 100vh;
-}
-body {
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
 </style>
