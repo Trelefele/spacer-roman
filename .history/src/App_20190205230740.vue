@@ -10,7 +10,7 @@
     <Claim v-if="step === 0"/>
     <SearchInput v-model="searchValue" @input="handleInput" :dark="step === 1"/>
     <div class="results">
-      <div v-for="item in results" >
+      <div v-for="item in results" :key="">
         <p>{{ item.links[0].href }}</p>
       </div>
     </div>

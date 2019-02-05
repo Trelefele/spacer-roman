@@ -2,18 +2,13 @@
   <div class="app">
     <div :class="[{flexStart:step === 1 }, 'wrapper']">
     <transition name="slide">
-      <img src="./assets/logo.svg" alt="Its site's logo" class="logo" v-if="step === 1">
+      <img src="./assets/logo.svg" alt="Its site's logo" class="logo">
     </transition>
     <transition name="fade">
       <HeroImage v-if="step === 0"/>
     </transition>
     <Claim v-if="step === 0"/>
     <SearchInput v-model="searchValue" @input="handleInput" :dark="step === 1"/>
-    <div class="results">
-      <div v-for="item in results" >
-        <p>{{ item.links[0].href }}</p>
-      </div>
-    </div>
   </div>
   </div>
 </template>
@@ -79,13 +74,6 @@ export default {
 }
 .fade-enter, .fade-leave-to{
   opacity: 0;
-}
-
-.slide-enter-active, .slide-leave-active {
-  transition: opacity .3s ease;
-}
-.slide-enter, .slide-leave-to{
-  margin-top: -50px
 }
 
 .wrapper {
