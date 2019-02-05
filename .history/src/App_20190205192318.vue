@@ -3,7 +3,7 @@
     <div class="wrapper">
     <HeroImage/>
     <Claim/>
-    <SearchInput v-model="searchValue" @input="handleInput"/>
+    <SearchInput/>
   </div>
   </div>
 </template>
@@ -22,7 +22,6 @@ export default {
   components: {
     Claim,
     SearchInput,
-    HeroImage
   },
   data() {
     return {
@@ -33,7 +32,6 @@ export default {
   methods: {
     // eslint-disable-next-line
     handleInput: debounce(function(){
-      console.log(this.searchValue);
       axios.get(`${API}?q=${this.searchValue}&media_type=image`)
         .then((response) => {
           // this.results = response.data.collection.items;
@@ -52,8 +50,6 @@ export default {
 
 * {
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-asx-font-smoothing: antialiased;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
@@ -61,7 +57,7 @@ export default {
 .wrapper {
     margin: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     padding: 30px;
     display: flex;
     flex-direction: column;

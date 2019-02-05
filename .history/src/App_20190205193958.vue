@@ -3,7 +3,7 @@
     <div class="wrapper">
     <HeroImage/>
     <Claim/>
-    <SearchInput v-model="searchValue" @input="handleInput"/>
+    <SearchInput/>
   </div>
   </div>
 </template>
@@ -33,7 +33,6 @@ export default {
   methods: {
     // eslint-disable-next-line
     handleInput: debounce(function(){
-      console.log(this.searchValue);
       axios.get(`${API}?q=${this.searchValue}&media_type=image`)
         .then((response) => {
           // this.results = response.data.collection.items;

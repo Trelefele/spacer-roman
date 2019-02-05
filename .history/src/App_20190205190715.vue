@@ -1,9 +1,8 @@
 <template>
   <div class="app">
-    <div class="wrapper">
-    <HeroImage/>
+    <div class="searchWrapper">
     <Claim/>
-    <SearchInput v-model="searchValue" @input="handleInput"/>
+    <SearchInput/>
   </div>
   </div>
 </template>
@@ -12,17 +11,15 @@
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 import Claim from '@/components/Claim.vue';
-import HeroImage from '@/components/HeroImage.vue';
 import SearchInput from '@/components/SearchInput.vue';
 
 const API = 'https://images-api.nasa.gov/search';
 
 export default {
-  name: 'App',
+  name: 'Search',
   components: {
     Claim,
     SearchInput,
-    HeroImage
   },
   data() {
     return {
@@ -33,7 +30,6 @@ export default {
   methods: {
     // eslint-disable-next-line
     handleInput: debounce(function(){
-      console.log(this.searchValue);
       axios.get(`${API}?q=${this.searchValue}&media_type=image`)
         .then((response) => {
           // this.results = response.data.collection.items;
@@ -52,20 +48,22 @@ export default {
 
 * {
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-asx-font-smoothing: antialiased;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
 }
-.wrapper {
+.searchWrapper {
     margin: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url('./assets/heroimage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 80%, 0%;
 }
 </style>
