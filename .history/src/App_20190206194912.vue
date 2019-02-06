@@ -9,7 +9,7 @@
       </transition>
       <Claim v-if="step === 0"/>
       <SearchInput v-model="searchValue" @input="handleInput" :dark="step === 1"/>
-      <div class="results" v-if="results && !loading && step === 1">
+      <div class="results" v-if="results && loading && step === 1">
         <Item v-for="item in results" :item="item" :key="item.data[0].nasa_id"  />
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
         .then((response) => {
           // this.results = response.data.collection.items;
           this.results = response.data.collection.items;
-          this.loading = false;
+          this.loading = true;
           this.step = 1;
         })
         .catch((error) => {
@@ -107,15 +107,5 @@ export default {
 .logo{
   position: absolute;
   top: 40px;
-}
-
-.results{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-  
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 }
 </style>
