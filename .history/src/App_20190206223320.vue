@@ -13,7 +13,7 @@
         <Item v-for="item in results" :item="item" :key="item.data[0].nasa_id" @click.native="handleModalOpen(item)" />
       </div>
     </div>
-    <Modal v-if="modalOpen" @closeModal="modalOpen = false"/>
+    <Modal v-if="modalOpen" @close-modal="modalOpen=false"/>
   </div>
 </template>
 
