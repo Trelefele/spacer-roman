@@ -1,19 +1,12 @@
 <template>
   <div class="app">
     <div :class="[{flexStart:step === 1 }, 'wrapper']">
-      <transition name="slide">
-        <img src="./assets/logo.svg" alt="Its site's logo" class="logo" v-if="step === 1">
-      </transition>
-      <transition name="fade">
-        <HeroImage v-if="step === 0"/>
-      </transition>
-      <Claim v-if="step === 0"/>
-      <SearchInput v-model="searchValue" @input="handleInput" :dark="step === 1"/>
-      <div class="results" v-if="results && !loading && step === 1">
-        <Item v-for="item in results" :item="item" :key="item.data[0].nasa_id" @click.native="handleModalOpen(item)" />
-      </div>
-    </div>
-    <Modal v-if="modalOpen" @closeModal="modalOpen = false"/>
+    <transition>
+     <HeroImage v-if="step === 0"/>
+    </transition>
+    <Claim v-if="step === 0"/>
+    <SearchInput v-model="searchValue" @input="handleInput" :dark="step === 1"/>
+  </div>
   </div>
 </template>
 
@@ -23,8 +16,6 @@ import debounce from 'lodash.debounce';
 import Claim from '@/components/Claim.vue';
 import HeroImage from '@/components/HeroImage.vue';
 import SearchInput from '@/components/SearchInput.vue';
-import Item from '@/components/Item.vue';
-import Modal from '@/components/Modal.vue';
 
 const API = 'https://images-api.nasa.gov/search';
 
@@ -33,13 +24,10 @@ export default {
   components: {
     Claim,
     SearchInput,
-    HeroImage,
-    Item,
-    Modal,
+    HeroImage
   },
   data() {
     return {
-      modalOpen: false,
       loading: false,
       step: 0,
       searchValue: '',
@@ -47,10 +35,6 @@ export default {
     };
   },
   methods: {
-    handleModalOpen(item) {
-      this.modalOpen = true;
-      console.log(item);
-    },
     // eslint-disable-next-line
     handleInput: debounce(function(){
       this.loading = true;
@@ -59,7 +43,7 @@ export default {
         .then((response) => {
           // this.results = response.data.collection.items;
           this.results = response.data.collection.items;
-          this.loading = false;
+          this.loading = true;
           this.step = 1;
         })
         .catch((error) => {
@@ -81,24 +65,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-.fade-enter, .fade-leave-to{
-  opacity: 0;
-}
-
-.slide-enter-active, .slide-leave-active {
-  transition: opacity .3s ease;
-}
-.slide-enter, .slide-leave-to{
-  margin-top: -50px
-}
-
 .wrapper {
     margin: 0;
-    position: relative;
     width: 100%;
     min-height: 100vh;
     padding: 30px;
@@ -110,21 +78,5 @@ export default {
     &.flexStart{
       justify-content: flex-start;
     }
-}
-
-.logo{
-  position: absolute;
-  top: 40px;
-}
-
-.results{
-  margin: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 }
 </style>

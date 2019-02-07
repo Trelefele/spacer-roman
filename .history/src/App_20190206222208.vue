@@ -13,7 +13,7 @@
         <Item v-for="item in results" :item="item" :key="item.data[0].nasa_id" @click.native="handleModalOpen(item)" />
       </div>
     </div>
-    <Modal v-if="modalOpen" @closeModal="modalOpen = false"/>
+    <Modal v-if="modalOpen" />
   </div>
 </template>
 
@@ -49,7 +49,6 @@ export default {
   methods: {
     handleModalOpen(item) {
       this.modalOpen = true;
-      console.log(item);
     },
     // eslint-disable-next-line
     handleInput: debounce(function(){
